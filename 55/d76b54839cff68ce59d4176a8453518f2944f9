@@ -1,0 +1,14 @@
+Readme.md
+  h_8e5d3e2ce230b9 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "55d76b54839cff68ce59d4176a8453518f2944f9",
+  "prompts": {},
+  "humans": {
+    "h_8e5d3e2ce230b9": {
+      "author": "Claudio Silwa <claudiosilva.one@gmail.com>"
+    }
+  }
+}
