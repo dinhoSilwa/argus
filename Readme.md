@@ -1,0 +1,1 @@
+MCP server + CLI que transforma qualquer agente de código num ambiente de engenharia completo — com arquitetura, memória, qualidade e rastreabilidade — em um único comando.
