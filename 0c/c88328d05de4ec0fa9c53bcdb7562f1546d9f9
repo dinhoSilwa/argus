@@ -1,0 +1,78 @@
+packages/mcp/tests/conftest.py
+  s_5119306f9b16e4::t_bde64bf38ddbd0 1
+packages/cli/src/wizard.ts
+  s_5119306f9b16e4::t_38c2473918d2f0 1-52
+.github/workflows/publish.yml
+  s_5119306f9b16e4::t_17efe2bbcc15ec 1-104
+packages/cli/tests/installer.test.ts
+  s_5119306f9b16e4::t_4bb47cff19db43 1-63
+packages/mcp/src/argus_mcp/tools/validate.py
+  s_5119306f9b16e4::t_8107f0072ecf7f 1-2,7-8,11-42,65-67,72,76,94,231-237
+  s_5119306f9b16e4::t_a5570aa52068d0 3-6,9-10,43-64,68-71,73-75,77-93,95-230
+packages/mcp/tests/tools/test_scaffold.py
+  s_5119306f9b16e4::t_62afb8b0fa823f 1-111
+packages/mcp/src/argus_mcp/tools/scaffold.py
+  s_5119306f9b16e4::t_e9eda39d098c13 1-2,7,10-62,75,81,94,105,111,116,129,132,134,239-246
+  s_5119306f9b16e4::t_8c5d8e1afc269e 3-6,8-9,63-74,76-80,82-93,95-104,106-110,112-115,117-128,130-131,133,135-238
+packages/mcp/src/argus_mcp/tools/memory.py
+  s_5119306f9b16e4::t_c8614efc217846 3-5,8-9,43-50,52-61,63-69,71-156
+  s_5119306f9b16e4::t_4ec8f3c895e6dc 1-2,6-7,10-42,51,62,70,157-162
+packages/cli/tsconfig.json
+  s_5119306f9b16e4::t_c577f97688b3b6 1-14
+packages/cli/tests/wizard.test.ts
+  s_5119306f9b16e4::t_39e21f90535b22 1-58
+packages/cli/src/registry.ts
+  s_5119306f9b16e4::t_75fd9b24f0437e 1-65
+packages/cli/src/commands/add.ts
+  s_5119306f9b16e4::t_4f08412b46bd8f 1-8
+packages/cli/tests/registry.test.ts
+  s_5119306f9b16e4::t_594d6951c224a9 1-28
+packages/cli/src/commands/sync.ts
+  s_5119306f9b16e4::t_2b17bc10d09b33 1-5
+packages/mcp/pyproject.toml
+  s_5119306f9b16e4::t_55323a0f23c09d 1-28
+packages/cli/package.json
+  s_5119306f9b16e4::t_8fa7e4a6f16696 1-31
+Readme.md
+  s_5119306f9b16e4::t_b903a614b51930 1-69
+packages/mcp/tests/tools/test_context.py
+  s_5119306f9b16e4::t_8ca8fbe29275a2 1-64
+packages/mcp/tests/tools/test_memory.py
+  s_5119306f9b16e4::t_c6b33a351a3521 1-102
+packages/cli/src/commands/init.ts
+  s_5119306f9b16e4::t_ec61c84e3485f7 1-3,5-7,14-16,19-27,29-33,35-36,39-40,42-43
+  s_5119306f9b16e4::t_b6e03def93bf27 4,8-13,17-18,28,34,37-38,41,44-45
+packages/mcp/src/argus_mcp/server.py
+  s_5119306f9b16e4::t_30468245db64d9 1-52
+packages/cli/src/installer.ts
+  s_5119306f9b16e4::t_84f8d8e73f4b28 1-69
+packages/cli/src/fetcher.ts
+  s_5119306f9b16e4::t_6599dc41092bf6 1-84
+.github/workflows/ci.yml
+  s_5119306f9b16e4::t_aef90fceea789b 1-64
+packages/mcp/src/argus_mcp/config.py
+  s_5119306f9b16e4::t_f0329ac2c3ee5f 1-48
+packages/mcp/tests/tools/test_validate.py
+  s_5119306f9b16e4::t_c2515e7f150f32 1-117
+packages/mcp/src/argus_mcp/tools/context.py
+  s_5119306f9b16e4::t_4b720a9b645efc 3-5,7-8,31-38,40-43,45-56,58-105
+  s_5119306f9b16e4::t_29a12dc6dff8fc 1-2,6,9-30,39,44,57,106-111
+packages/cli/src/cli.ts
+  s_5119306f9b16e4::t_f3baa091f72e72 1-30
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "0cc88328d05de4ec0fa9c53bcdb7562f1546d9f9",
+  "prompts": {},
+  "sessions": {
+    "s_5119306f9b16e4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4d7fc480-dd43-417b-b7de-8d54453effed",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Claudio Silwa <claudiosilva.one@gmail.com>"
+    }
+  }
+}
