@@ -9,7 +9,7 @@ import type { AgentType } from "./wizard.js";
 const exec = promisify(execFile);
 
 export async function installMcpServer(): Promise<void> {
-  await exec("uv", ["tool", "install", "argus-mcp"]);
+  await exec("uv", ["tool", "install", "argus-mcp-cli"]);
 }
 
 export async function registerAgent(

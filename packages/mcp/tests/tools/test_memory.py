@@ -38,7 +38,7 @@ BACKLOG = textwrap.dedent("""\
 
 def test_move_to_in_progress():
     result = _move_to_in_progress(BACKLOG, "ARGUS-020")
-    assert "ARGUS-020" in result.split("## Em andamento")[1].split("---")[0]
+    assert "ARGUS-020" in result.split("## Em andamento")[1].split("## Pendente")[0]
     assert result.count("ARGUS-020") == 1
 
 

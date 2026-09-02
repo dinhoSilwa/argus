@@ -3,7 +3,7 @@ import { cp, mkdir, mkdtemp, rm } from "node:fs/promises";
 import { homedir, tmpdir } from "node:os";
 import { join } from "node:path";
 import { pipeline } from "node:stream/promises";
-import tar from "tar";
+import * as tar from "tar";
 
 const REPO = "argus-dev/argus-templates";
 const CACHE_DIR = join(homedir(), ".argus", "cache");
@@ -72,7 +72,7 @@ async function downloadAndExtract(ref: string, destDir: string): Promise<void> {
       file: tarball,
       cwd: destDir,
       strip: 1,
-      filter: (p) =>
+      filter: (p: string) =>
         p.includes("/stacks/") ||
         p.includes("/vault/") ||
         p.endsWith("/stacks") ||

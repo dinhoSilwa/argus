@@ -2,6 +2,8 @@
 
 > Instala um sistema de engenharia completo em qualquer projeto — em dois minutos.
 
+**[→ Guia completo: como funciona e como usar](docs/guide.md)**
+
 ```bash
 npx argus init
 ```
