@@ -45,7 +45,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: packages/mcp
-        run: uv sync --frozen
+        run: uv sync --frozen --all-groups
 
       - name: Lint
         working-directory: packages/mcp
