@@ -113,7 +113,9 @@ def _move_to_in_progress(content: str, item_id: str) -> str:
     row = match.group(1)
     content = content.replace(row, "", 1)
 
-    in_progress_header = "## Em andamento\n\n| ID | Item | Responsável |\n|----|------|-------------|"
+    in_progress_header = (
+        "## Em andamento\n\n| ID | Item | Responsável |\n|----|------|-------------|"
+    )
     insert_row = f"| {item_id} | {_extract_item_text(row)} | — |"
     return content.replace(
         in_progress_header,

@@ -68,7 +68,10 @@ async def test_save_decision_no_root(monkeypatch: pytest.MonkeyPatch):
     monkeypatch.delenv("ARGUS_PROJECT_ROOT", raising=False)
     monkeypatch.chdir("/")
     from argus_mcp.tools.memory import _save_decision
-    result = await _save_decision({"title": "t", "context": "c", "decision": "d", "reason": "r"})
+
+    result = await _save_decision(
+        {"title": "t", "context": "c", "decision": "d", "reason": "r"}
+    )
     assert result.startswith("[ERRO]")
 
 
@@ -81,16 +84,20 @@ async def test_save_decision_writes_entry(tmp_path: Path):
     log.write_text("# Decision Log\n\n---\n")
 
     import os
+
     os.environ["ARGUS_PROJECT_ROOT"] = str(tmp_path)
     os.environ["ARGUS_VAULT_PATH"] = str(vault)
 
     from argus_mcp.tools.memory import _save_decision
-    result = await _save_decision({
-        "title": "Teste",
-        "context": "contexto",
-        "decision": "decisão",
-        "reason": "motivo",
-    })
+
+    result = await _save_decision(
+        {
+            "title": "Teste",
+            "context": "contexto",
+            "decision": "decisão",
+            "reason": "motivo",
+        }
+    )
 
     del os.environ["ARGUS_PROJECT_ROOT"]
     del os.environ["ARGUS_VAULT_PATH"]

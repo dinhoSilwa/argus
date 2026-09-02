@@ -35,9 +35,7 @@ def _find_project_root() -> Path:
     for directory in [Path.cwd(), *Path.cwd().parents]:
         if (directory / ".argus").exists() or (directory / "CLAUDE.md").exists():
             return directory
-    raise RuntimeError(
-        "project root não encontrado — rode argus init primeiro"
-    )
+    raise RuntimeError("project root não encontrado — rode argus init primeiro")
 
 
 def _read_stack(root: Path) -> str:

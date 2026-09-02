@@ -64,6 +64,7 @@ async def test_validate_architecture_no_features(tmp_path: Path):
     _setup(tmp_path, "fastapi-supabase")
     try:
         from argus_mcp.tools.validate import _validate_architecture
+
         result = await _validate_architecture({})
         assert result.startswith("[ERRO]")
     finally:
@@ -77,6 +78,7 @@ async def test_validate_architecture_clean(tmp_path: Path):
     (tmp_path / "src" / "features" / "payments" / "service.py").write_text("")
     try:
         from argus_mcp.tools.validate import _validate_architecture
+
         result = await _validate_architecture({})
         assert "válida" in result
     finally:
@@ -94,6 +96,7 @@ async def test_review_endpoint_fastapi_complete(tmp_path: Path):
     (feature / "tests" / "test_users.py").write_text("")
     try:
         from argus_mcp.tools.validate import _review_endpoint
+
         result = await _review_endpoint({"feature": "users", "path": "/users"})
         assert "aprovado" in result
         assert "✗" not in result
@@ -110,6 +113,7 @@ async def test_review_endpoint_missing_test(tmp_path: Path):
         (feature / f).write_text("")
     try:
         from argus_mcp.tools.validate import _review_endpoint
+
         result = await _review_endpoint({"feature": "users", "path": "/users"})
         assert "incompleto" in result
         assert "✗ teste" in result

@@ -48,6 +48,7 @@ def test_feature_files_go():
 def _setup_env(tmp_path: Path, stack: str) -> None:
     (tmp_path / ".argus").mkdir()
     import json
+
     (tmp_path / ".argus" / "config.json").write_text(json.dumps({"stack": stack}))
     vault = tmp_path / "vault"
     (vault / "03-specifications").mkdir(parents=True)
@@ -67,9 +68,12 @@ async def test_create_spec(tmp_path: Path):
     _setup_env(tmp_path, "fastapi-supabase")
     try:
         from argus_mcp.tools.scaffold import _create_spec
+
         result = await _create_spec({"id": "PROJ-001", "title": "My Feature"})
         assert "Spec criada" in result
-        assert (tmp_path / "vault" / "03-specifications" / "PROJ-001-my-feature.md").exists()
+        assert (
+            tmp_path / "vault" / "03-specifications" / "PROJ-001-my-feature.md"
+        ).exists()
     finally:
         _teardown_env()
 
@@ -79,6 +83,7 @@ async def test_create_spec_already_exists(tmp_path: Path):
     _setup_env(tmp_path, "fastapi-supabase")
     try:
         from argus_mcp.tools.scaffold import _create_spec
+
         await _create_spec({"id": "PROJ-001", "title": "My Feature"})
         result = await _create_spec({"id": "PROJ-001", "title": "My Feature"})
         assert result.startswith("[ERRO]")
@@ -91,6 +96,7 @@ async def test_create_feature_fastapi(tmp_path: Path):
     _setup_env(tmp_path, "fastapi-supabase")
     try:
         from argus_mcp.tools.scaffold import _create_feature
+
         result = await _create_feature({"name": "payments"})
         assert "Feature criada" in result
         assert (tmp_path / "src" / "features" / "payments" / "router.py").exists()
@@ -103,6 +109,7 @@ async def test_create_migration(tmp_path: Path):
     _setup_env(tmp_path, "fastapi-supabase")
     try:
         from argus_mcp.tools.scaffold import _create_migration
+
         result = await _create_migration({"description": "add_users_table"})
         assert "Migration criada" in result
         assert (tmp_path / "migrations" / "0001_add_users_table.up.sql").exists()

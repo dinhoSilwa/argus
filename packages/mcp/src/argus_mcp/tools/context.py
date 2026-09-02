@@ -44,12 +44,16 @@ async def _read_project_context(args: dict[str, object]) -> str:
 
     decision_file = cfg.vault_path / "00-project-charter" / "decision-log.md"
     if decision_file.exists():
-        decisions = _extract_last_decisions(decision_file.read_text(encoding="utf-8"), n=5)
+        decisions = _extract_last_decisions(
+            decision_file.read_text(encoding="utf-8"), n=5
+        )
         parts.append(f"\n## Últimas decisões\n{decisions}")
 
     instrucao_file = cfg.vault_path / "11-ai-context" / "instrucao-ia.md"
     if instrucao_file.exists():
-        parts.append(f"\n## Instruções do agente\n{instrucao_file.read_text(encoding='utf-8')}")
+        parts.append(
+            f"\n## Instruções do agente\n{instrucao_file.read_text(encoding='utf-8')}"
+        )
 
     return "\n".join(parts)
 
@@ -82,7 +86,11 @@ def _extract_in_progress(backlog: str) -> str:
     if not match:
         return "nenhum item em andamento"
     block = match.group(1).strip()
-    rows = [row for row in block.splitlines() if row.startswith("|") and "---" not in row and "ID" not in row]
+    rows = [
+        row
+        for row in block.splitlines()
+        if row.startswith("|") and "---" not in row and "ID" not in row
+    ]
     return "\n".join(rows) if rows else "nenhum item em andamento"
 
 
@@ -98,7 +106,10 @@ def _find_by_id(vault: Path, spec_id: str) -> Path | None:
         if spec_id.lower() in md.stem.lower():
             return md
         try:
-            if spec_id.lower() in md.read_text(encoding="utf-8", errors="ignore").lower()[:200]:
+            if (
+                spec_id.lower()
+                in md.read_text(encoding="utf-8", errors="ignore").lower()[:200]
+            ):
                 return md
         except OSError:
             continue

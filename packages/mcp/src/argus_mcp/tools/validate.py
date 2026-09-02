@@ -122,6 +122,7 @@ async def _review_endpoint(args: dict[str, object]) -> str:
 
 # --- helpers ---
 
+
 def _find_cross_imports(
     features_dir: Path, features: list[str]
 ) -> list[tuple[str, str]]:
@@ -147,7 +148,9 @@ def _find_cross_imports(
 def _imports_feature(content: str, other_feature: str, suffix: str) -> bool:
     snake = other_feature.replace("-", "_")
     if suffix == ".py":
-        return bool(re.search(rf"from features\.{snake}\.|import features\.{snake}", content))
+        return bool(
+            re.search(rf"from features\.{snake}\.|import features\.{snake}", content)
+        )
     if suffix in (".ts", ".tsx"):
         return bool(re.search(rf"from ['\"].*features/{other_feature}", content))
     if suffix == ".go":
@@ -155,9 +158,7 @@ def _imports_feature(content: str, other_feature: str, suffix: str) -> bool:
     return False
 
 
-def _quality_commands(
-    stack: str, fix: bool, root: Path
-) -> list[tuple[str, list[str]]]:
+def _quality_commands(stack: str, fix: bool, root: Path) -> list[tuple[str, list[str]]]:
     if "fastapi" in stack or "python" in stack:
         lint_cmd = ["ruff", "check", ".", "--fix"] if fix else ["ruff", "check", "."]
         return [
@@ -198,9 +199,7 @@ async def _run(cmd: list[str], cwd: Path) -> tuple[bool, str]:
         return False, "[timeout após 60s]"
 
 
-def _build_checklist(
-    feature_dir: Path, stack: str
-) -> list[tuple[str, bool, str]]:
+def _build_checklist(feature_dir: Path, stack: str) -> list[tuple[str, bool, str]]:
     files = {f.name for f in feature_dir.rglob("*") if f.is_file()}
     has_test = any("test" in f.lower() for f in files)
 

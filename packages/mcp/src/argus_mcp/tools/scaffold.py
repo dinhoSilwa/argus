@@ -39,7 +39,10 @@ TOOLS: list[types.Tool] = [
             "type": "object",
             "properties": {
                 "feature": {"type": "string"},
-                "method": {"type": "string", "enum": ["GET", "POST", "PUT", "PATCH", "DELETE"]},
+                "method": {
+                    "type": "string",
+                    "enum": ["GET", "POST", "PUT", "PATCH", "DELETE"],
+                },
                 "path": {"type": "string"},
             },
             "required": ["feature", "method", "path"],
@@ -159,11 +162,10 @@ async def _create_migration(args: dict[str, object]) -> str:
 
 # --- helpers ---
 
+
 def _next_migration_number(migrations_dir: Path) -> int:
     existing = [
-        int(m.name[:4])
-        for m in migrations_dir.glob("*.sql")
-        if m.name[:4].isdigit()
+        int(m.name[:4]) for m in migrations_dir.glob("*.sql") if m.name[:4].isdigit()
     ]
     return max(existing, default=0) + 1
 
@@ -173,38 +175,40 @@ def _feature_files(stack: str, name: str) -> dict[str, str]:
     if "fastapi" in stack or "python" in stack:
         return {
             "schemas.py": f"from pydantic import BaseModel\n\n\nclass {_pascal(name)}Response(BaseModel):\n    pass\n",
-            "repository.py": f"from supabase import AsyncClient\n\n\nasync def find_all(db: AsyncClient) -> list[dict]:\n    result = await db.table(\"{snake}s\").select(\"*\").execute()\n    return result.data\n",
+            "repository.py": f'from supabase import AsyncClient\n\n\nasync def find_all(db: AsyncClient) -> list[dict]:\n    result = await db.table("{snake}s").select("*").execute()\n    return result.data\n',
             "service.py": "from supabase import AsyncClient\nfrom . import repository\n\n\nasync def list_all(db: AsyncClient) -> list[dict]:\n    return await repository.find_all(db)\n",
-            "router.py": f"from fastapi import APIRouter, Depends\nfrom supabase import AsyncClient\nfrom app.deps import get_db\nfrom . import service\n\nrouter = APIRouter(prefix=\"/{snake}s\", tags=[\"{snake}s\"])\n\n\n@router.get(\"/\")\nasync def list_{snake}s(db: AsyncClient = Depends(get_db)):\n    return await service.list_all(db)\n",
-            f"tests/test_{snake}.py": f"import pytest\nfrom httpx import AsyncClient\n\n\n@pytest.mark.asyncio\nasync def test_list_{snake}s(client: AsyncClient):\n    response = await client.get(\"/{snake}s/\")\n    assert response.status_code == 200\n",
+            "router.py": f'from fastapi import APIRouter, Depends\nfrom supabase import AsyncClient\nfrom app.deps import get_db\nfrom . import service\n\nrouter = APIRouter(prefix="/{snake}s", tags=["{snake}s"])\n\n\n@router.get("/")\nasync def list_{snake}s(db: AsyncClient = Depends(get_db)):\n    return await service.list_all(db)\n',
+            f"tests/test_{snake}.py": f'import pytest\nfrom httpx import AsyncClient\n\n\n@pytest.mark.asyncio\nasync def test_list_{snake}s(client: AsyncClient):\n    response = await client.get("/{snake}s/")\n    assert response.status_code == 200\n',
         }
     if "nextjs" in stack or "next" in stack:
         return {
             "page.tsx": f"export default async function {_pascal(name)}Page() {{\n  return <main><h1>{_pascal(name)}</h1></main>;\n}}\n",
-            "actions.ts": f"\"use server\";\n\nexport async function list{_pascal(name)}() {{\n  // TODO\n  return [];\n}}\n",
-            "repository.ts": f"import {{ prisma }} from \"@/lib/prisma\";\n\nexport async function findAll() {{\n  return prisma.{snake}.findMany();\n}}\n",
-            "schemas.ts": f"import {{ z }} from \"zod\";\n\nexport const {snake}Schema = z.object({{\n  id: z.string(),\n}});\n",
-            f"tests/{snake}.test.ts": f"import {{ describe, it, expect }} from \"vitest\";\n\ndescribe(\"{name}\", () => {{\n  it(\"placeholder\", () => expect(true).toBe(true));\n}});\n",
+            "actions.ts": f'"use server";\n\nexport async function list{_pascal(name)}() {{\n  // TODO\n  return [];\n}}\n',
+            "repository.ts": f'import {{ prisma }} from "@/lib/prisma";\n\nexport async function findAll() {{\n  return prisma.{snake}.findMany();\n}}\n',
+            "schemas.ts": f'import {{ z }} from "zod";\n\nexport const {snake}Schema = z.object({{\n  id: z.string(),\n}});\n',
+            f"tests/{snake}.test.ts": f'import {{ describe, it, expect }} from "vitest";\n\ndescribe("{name}", () => {{\n  it("placeholder", () => expect(true).toBe(true));\n}});\n',
         }
     if "go" in stack:
         pkg = snake
         return {
-            "model.go": f"package {pkg}\n\ntype {_pascal(name)} struct {{\n\tID string `json:\"id\"`\n}}\n",
+            "model.go": f'package {pkg}\n\ntype {_pascal(name)} struct {{\n\tID string `json:"id"`\n}}\n',
             "repository.go": f"package {pkg}\n\ntype Repository struct{{}}\n",
             "service.go": f"package {pkg}\n\ntype Service struct {{\n\trepo *Repository\n}}\n\nfunc NewService(r *Repository) *Service {{ return &Service{{repo: r}} }}\n",
-            "handler.go": f"package {pkg}\n\nimport \"net/http\"\n\ntype Handler struct {{ svc *Service }}\n\nfunc NewHandler(s *Service) *Handler {{ return &Handler{{svc: s}} }}\n\nfunc (h *Handler) List(w http.ResponseWriter, r *http.Request) {{}}\n",
-            "handler_test.go": f"package {pkg}_test\n\nimport \"testing\"\n\nfunc TestList(t *testing.T) {{ t.Skip(\"implement\") }}\n",
+            "handler.go": f'package {pkg}\n\nimport "net/http"\n\ntype Handler struct {{ svc *Service }}\n\nfunc NewHandler(s *Service) *Handler {{ return &Handler{{svc: s}} }}\n\nfunc (h *Handler) List(w http.ResponseWriter, r *http.Request) {{}}\n',
+            "handler_test.go": f'package {pkg}_test\n\nimport "testing"\n\nfunc TestList(t *testing.T) {{ t.Skip("implement") }}\n',
         }
-    return {"README.md": f"# {name}\n\nFeature criada pelo Argus. Stack não reconhecida: {stack}\n"}
+    return {
+        "README.md": f"# {name}\n\nFeature criada pelo Argus. Stack não reconhecida: {stack}\n"
+    }
 
 
 def _endpoint_note(stack: str, method: str, path: str) -> str:
     if "fastapi" in stack:
-        return f"  Adicione @router.{method.lower()}(\"{path}\") em router.py"
+        return f'  Adicione @router.{method.lower()}("{path}") em router.py'
     if "nextjs" in stack:
         return f"  Adicione export async function {method.lower()}() em route.ts"
     if "go" in stack:
-        return f"  Adicione r.{method}(\"{path}\", h.handler) em handler.go"
+        return f'  Adicione r.{method}("{path}", h.handler) em handler.go'
     return "  Adicione o handler conforme a stack do projeto"
 
 

@@ -53,6 +53,7 @@ async def test_read_project_context_no_root(monkeypatch: pytest.MonkeyPatch):
     monkeypatch.delenv("ARGUS_PROJECT_ROOT", raising=False)
     monkeypatch.chdir("/")
     from argus_mcp.tools.context import _read_project_context
+
     result = await _read_project_context({})
     assert result.startswith("[ERRO]")
 
@@ -60,5 +61,6 @@ async def test_read_project_context_no_root(monkeypatch: pytest.MonkeyPatch):
 @pytest.mark.asyncio
 async def test_read_spec_missing_args():
     from argus_mcp.tools.context import _read_spec
+
     result = await _read_spec({})
     assert result == "[ERRO] forneça id ou path"
