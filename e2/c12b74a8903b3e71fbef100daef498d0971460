@@ -1,0 +1,37 @@
+packages/mcp/src/argus_mcp/tools/context.py
+  s_5119306f9b16e4::t_16b5d2ae31e579 5
+  s_5119306f9b16e4::t_de68c90ec21136 15,20
+  s_5119306f9b16e4::t_9fb507c0cc1af5 121
+  s_5119306f9b16e4::t_750a34e3a91188 74
+packages/mcp/src/argus_mcp/tools/validate.py
+  s_5119306f9b16e4::t_1e23dac9b0c2b1 233
+  s_5119306f9b16e4::t_d15c56f867148e 6
+  s_5119306f9b16e4::t_ce981449c52680 16,21,31
+packages/mcp/src/argus_mcp/server.py
+  s_5119306f9b16e4::t_021706931392a6 32,37
+  s_5119306f9b16e4::t_ba2da52d28c3f2 25-28
+packages/mcp/src/argus_mcp/tools/memory.py
+  s_5119306f9b16e4::t_6c02d9d388adc2 15,30
+  s_5119306f9b16e4::t_f8dbd743cd2d4d 162
+  s_5119306f9b16e4::t_4cf545db8ddd94 5
+packages/mcp/src/argus_mcp/tools/scaffold.py
+  s_5119306f9b16e4::t_5c86f0aa7d59ee 6
+  s_5119306f9b16e4::t_f97fef81e9fb30 246
+  s_5119306f9b16e4::t_017df085387692 16,28,39,55
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "e2c12b74a8903b3e71fbef100daef498d0971460",
+  "prompts": {},
+  "sessions": {
+    "s_5119306f9b16e4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4d7fc480-dd43-417b-b7de-8d54453effed",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Claudio Silwa <claudiosilva.one@gmail.com>"
+    }
+  }
+}
