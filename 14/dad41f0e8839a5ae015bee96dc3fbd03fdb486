@@ -1,0 +1,19 @@
+.github/workflows/publish.yml
+  s_5119306f9b16e4::t_3531d0c8d19e28 69
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "14dad41f0e8839a5ae015bee96dc3fbd03fdb486",
+  "prompts": {},
+  "sessions": {
+    "s_5119306f9b16e4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4d7fc480-dd43-417b-b7de-8d54453effed",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Claudio Silwa <claudiosilva.one@gmail.com>"
+    }
+  }
+}
