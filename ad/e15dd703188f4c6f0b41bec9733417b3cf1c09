@@ -1,0 +1,21 @@
+Readme.md
+  s_5119306f9b16e4::t_89d2e47e19cb06 50-54
+docs/guide.md
+  s_5119306f9b16e4::t_1d32b31f07a8e3 226,230,235,239-240
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "ade15dd703188f4c6f0b41bec9733417b3cf1c09",
+  "prompts": {},
+  "sessions": {
+    "s_5119306f9b16e4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4d7fc480-dd43-417b-b7de-8d54453effed",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Claudio Silwa <claudiosilva.one@gmail.com>"
+    }
+  }
+}
