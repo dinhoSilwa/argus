@@ -1,0 +1,104 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: read
+  id-token: write   # OIDC para PyPI trusted publishing
+
+jobs:
+  validate:
+    name: Validar versão
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extrair versão da tag
+        id: version
+        run: echo "version=${GITHUB_REF_NAME#v}" >> $GITHUB_OUTPUT
+
+      - name: Verificar versão no CLI
+        run: |
+          CLI_VERSION=$(node -p "require('./packages/cli/package.json').version")
+          if [ "$CLI_VERSION" != "${{ steps.version.outputs.version }}" ]; then
+            echo "Versão do CLI ($CLI_VERSION) não bate com a tag (${{ steps.version.outputs.version }})"
+            exit 1
+          fi
+
+      - name: Verificar versão no MCP
+        run: |
+          MCP_VERSION=$(grep '^version' packages/mcp/pyproject.toml | cut -d'"' -f2)
+          if [ "$MCP_VERSION" != "${{ steps.version.outputs.version }}" ]; then
+            echo "Versão do MCP ($MCP_VERSION) não bate com a tag (${{ steps.version.outputs.version }})"
+            exit 1
+          fi
+
+  test-cli:
+    name: Testes CLI
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+        working-directory: packages/cli
+      - run: npm run type-check && npm test && npm run build
+        working-directory: packages/cli
+
+  test-mcp:
+    name: Testes MCP
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v3
+      - run: uv sync --frozen
+        working-directory: packages/mcp
+      - run: uv run ruff check . && uv run mypy src/ && uv run pytest
+        working-directory: packages/mcp
+
+  publish-cli:
+    name: Publicar CLI → npm
+    needs: [test-cli, test-mcp]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+
+      - run: npm install && npm run build
+        working-directory: packages/cli
+
+      - name: Publish
+        working-directory: packages/cli
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  publish-mcp:
+    name: Publicar MCP → PyPI
+    needs: [test-cli, test-mcp]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v3
+
+      - name: Build
+        working-directory: packages/mcp
+        run: uv build
+
+      - name: Publish
+        working-directory: packages/mcp
+        run: uv publish
+        # usa OIDC trusted publishing — sem token necessário se configurado no PyPI

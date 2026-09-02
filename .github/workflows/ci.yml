@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  cli:
+    name: CLI (TypeScript)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: packages/cli/package.json
+
+      - name: Install dependencies
+        working-directory: packages/cli
+        run: npm install
+
+      - name: Type check
+        working-directory: packages/cli
+        run: npm run type-check
+
+      - name: Tests
+        working-directory: packages/cli
+        run: npm test
+
+      - name: Build
+        working-directory: packages/cli
+        run: npm run build
+
+  mcp:
+    name: MCP Server (Python)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v3
+
+      - name: Install dependencies
+        working-directory: packages/mcp
+        run: uv sync --frozen
+
+      - name: Lint
+        working-directory: packages/mcp
+        run: uv run ruff check .
+
+      - name: Format check
+        working-directory: packages/mcp
+        run: uv run ruff format --check .
+
+      - name: Type check
+        working-directory: packages/mcp
+        run: uv run mypy src/
+
+      - name: Tests
+        working-directory: packages/mcp
+        run: uv run pytest
