@@ -1,0 +1,38 @@
+.gitignore
+  s_5119306f9b16e4::t_f922eb51b7cdaa 1-9
+docs/guide.md
+  s_5119306f9b16e4::t_d7ca9369b25684 340
+  s_5119306f9b16e4::t_e8ff7b8bc74b4c 1-339,341-344
+packages/mcp/pyproject.toml
+  s_5119306f9b16e4::t_8dcf6eeddaf48e 6
+  s_5119306f9b16e4::t_b101ecaa905f3a 20-29
+Readme.md
+  s_5119306f9b16e4::t_1e9d8aad475415 5-6
+packages/mcp/tests/tools/test_memory.py
+  s_5119306f9b16e4::t_a9e08d98c5418a 41
+packages/cli/src/registry.ts
+  s_5119306f9b16e4::t_1e2f5b4c5c86d5 12
+packages/cli/src/fetcher.ts
+  s_5119306f9b16e4::t_b8f28746544e25 6
+  s_5119306f9b16e4::t_beb96601be282a 75
+packages/mcp/uv.lock
+  s_5119306f9b16e4::t_f5d8675b2593b7 1-733
+packages/cli/package-lock.json
+  s_5119306f9b16e4::t_2dc7d69b7159b1 1-3318
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "11a4b1b4c222ae55979e2ff31b0ad3412006805e",
+  "prompts": {},
+  "sessions": {
+    "s_5119306f9b16e4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4d7fc480-dd43-417b-b7de-8d54453effed",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Claudio Silwa <claudiosilva.one@gmail.com>"
+    }
+  }
+}
