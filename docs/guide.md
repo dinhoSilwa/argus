@@ -223,21 +223,21 @@ Checklist completo antes de considerar um endpoint/componente/handler como pront
 ### `npx create-argus`
 Configura um projeto do zero. Roda uma vez.
 
-### `npx argus add skill <nome>`
+### `argus add skill <nome>`
 Adiciona uma skill avulsa ao projeto.
 
 ```bash
-npx argus add skill lint-fix
+npx create-argus add skill lint-fix
 ```
 
 Baixa a skill da stack do projeto e instala em `.claude/skills/` ou `.cursor/rules/`.
 
-### `npx argus sync`
+### `argus sync`
 Atualiza os templates para a versão mais recente, preservando arquivos que você modificou.
 
 ```bash
-npx argus sync              # atualiza para "latest"
-npx argus sync --ref v1.2.0 # versão específica
+npx create-argus sync              # atualiza para "latest"
+npx create-argus sync --ref v1.2.0 # versão específica
 ```
 
 ---

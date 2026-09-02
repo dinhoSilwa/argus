@@ -47,7 +47,11 @@ argus/
 # 2. Criar e fazer push da tag
 git tag v1.0.0
 git push origin v1.0.0
-# CI publica automaticamente para npm e PyPI
+# CI publica automaticamente para PyPI (argus-mcp-cli)
+
+# 3. Publicar o CLI no npm manualmente
+cd packages/cli
+npm publish --access public
 ```
 
 ## MCP tools disponíveis
