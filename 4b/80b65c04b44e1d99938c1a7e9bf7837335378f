@@ -1,0 +1,31 @@
+packages/mcp/src/argus_mcp/tools/context.py
+  s_5119306f9b16e4::t_1b84b2d82f7fd5 85
+packages/mcp/pyproject.toml
+  s_5119306f9b16e4::t_e866d09a74d5f5 38
+packages/mcp/src/argus_mcp/tools/validate.py
+  s_5119306f9b16e4::t_3cc4f5b205a3e9 89
+  s_5119306f9b16e4::t_02696d1f83f33b 19
+  s_5119306f9b16e4::t_37c77ec276aff7 23
+  s_5119306f9b16e4::t_c916af2161c33d 14
+  s_5119306f9b16e4::t_cfb6bdf43d4e57 197
+packages/mcp/src/argus_mcp/tools/scaffold.py
+  s_5119306f9b16e4::t_36efe3355595b3 177,196
+packages/mcp/tests/tools/test_scaffold.py
+  s_5119306f9b16e4::t_04dd4ff5df021e 8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "4b80b65c04b44e1d99938c1a7e9bf7837335378f",
+  "prompts": {},
+  "sessions": {
+    "s_5119306f9b16e4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4d7fc480-dd43-417b-b7de-8d54453effed",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Claudio Silwa <claudiosilva.one@gmail.com>"
+    }
+  }
+}
