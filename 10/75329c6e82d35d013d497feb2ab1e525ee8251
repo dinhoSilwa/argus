@@ -1,0 +1,35 @@
+packages/mcp/src/argus_mcp/config.py
+  s_5119306f9b16e4::t_f204327def7657 38
+packages/mcp/src/argus_mcp/tools/context.py
+  s_5119306f9b16e4::t_f1c420f6dff62c 47-49,54-56,89-93,109-112
+packages/mcp/src/argus_mcp/tools/memory.py
+  s_5119306f9b16e4::t_24f43a51002398 116-118
+packages/mcp/src/argus_mcp/tools/scaffold.py
+  s_5119306f9b16e4::t_b0246f1ad4b9eb 42-45,165,168,178,180-181,186-189,194,197-198,200-202,207,211
+packages/mcp/src/argus_mcp/tools/validate.py
+  s_5119306f9b16e4::t_3271d7563595e6 125,151-153,161,202
+packages/mcp/tests/tools/test_context.py
+  s_5119306f9b16e4::t_e1b29a10e80396 56,64
+packages/mcp/tests/tools/test_scaffold.py
+  s_5119306f9b16e4::t_29456d26149200 51,71,74-76,86,99,112
+packages/mcp/tests/tools/test_validate.py
+  s_5119306f9b16e4::t_ecf6a277ad0101 67,81,99,116
+packages/mcp/tests/tools/test_memory.py
+  s_5119306f9b16e4::t_b1bb7b5e0c5b6f 71-74,87,92-100
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "1075329c6e82d35d013d497feb2ab1e525ee8251",
+  "prompts": {},
+  "sessions": {
+    "s_5119306f9b16e4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4d7fc480-dd43-417b-b7de-8d54453effed",
+        "model": "unknown"
+      },
+      "human_author": "Claudio Silwa <claudiosilva.one@gmail.com>"
+    }
+  }
+}
