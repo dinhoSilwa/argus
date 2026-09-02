@@ -11,16 +11,16 @@ from argus_mcp.config import load
 TOOLS: list[types.Tool] = [
     types.Tool(
         name="validate_architecture",
-        description="Verifica se a estrutura do projeto segue VSA (sem imports cruzados entre features).",
+        description="Verifica VSA: sem imports cruzados entre features.",
         inputSchema={"type": "object", "properties": {}},
     ),
     types.Tool(
         name="check_quality",
-        description="Executa lint + typecheck + testes e retorna resultado consolidado.",
+        description="Executa lint, typecheck e testes.",
         inputSchema={
             "type": "object",
             "properties": {
-                "fix": {"type": "boolean", "description": "Tenta corrigir automaticamente"},
+                "fix": {"type": "boolean", "description": "Corrige automaticamente"},
             },
         },
     ),
@@ -86,7 +86,7 @@ async def _check_quality(args: dict[str, object]) -> str:
         status = "PASSOU" if ok else "FALHOU"
         lines.append(f"  {label:<12} {status}")
         if not ok:
-            lines.extend(f"    {l}" for l in output.strip().splitlines()[:10])
+            lines.extend(f"    {line}" for line in output.strip().splitlines()[:10])
 
     return "\n".join(lines)
 
@@ -194,7 +194,7 @@ async def _run(cmd: list[str], cwd: Path) -> tuple[bool, str]:
         return proc.returncode == 0, output
     except FileNotFoundError:
         return False, f"[comando não encontrado: {cmd[0]}]"
-    except asyncio.TimeoutError:
+    except TimeoutError:
         return False, "[timeout após 60s]"
 
 

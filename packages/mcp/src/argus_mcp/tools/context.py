@@ -82,7 +82,7 @@ def _extract_in_progress(backlog: str) -> str:
     if not match:
         return "nenhum item em andamento"
     block = match.group(1).strip()
-    rows = [l for l in block.splitlines() if l.startswith("|") and "---" not in l and "ID" not in l]
+    rows = [row for row in block.splitlines() if row.startswith("|") and "---" not in row and "ID" not in row]
     return "\n".join(rows) if rows else "nenhum item em andamento"
 
 

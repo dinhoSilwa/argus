@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from argus_mcp.tools.scaffold import _next_migration_number, _pascal, _feature_files
+from argus_mcp.tools.scaffold import _feature_files, _next_migration_number, _pascal
 
 
 def test_pascal():

@@ -174,7 +174,7 @@ def _feature_files(stack: str, name: str) -> dict[str, str]:
         return {
             "schemas.py": f"from pydantic import BaseModel\n\n\nclass {_pascal(name)}Response(BaseModel):\n    pass\n",
             "repository.py": f"from supabase import AsyncClient\n\n\nasync def find_all(db: AsyncClient) -> list[dict]:\n    result = await db.table(\"{snake}s\").select(\"*\").execute()\n    return result.data\n",
-            "service.py": f"from supabase import AsyncClient\nfrom . import repository\n\n\nasync def list_all(db: AsyncClient) -> list[dict]:\n    return await repository.find_all(db)\n",
+            "service.py": "from supabase import AsyncClient\nfrom . import repository\n\n\nasync def list_all(db: AsyncClient) -> list[dict]:\n    return await repository.find_all(db)\n",
             "router.py": f"from fastapi import APIRouter, Depends\nfrom supabase import AsyncClient\nfrom app.deps import get_db\nfrom . import service\n\nrouter = APIRouter(prefix=\"/{snake}s\", tags=[\"{snake}s\"])\n\n\n@router.get(\"/\")\nasync def list_{snake}s(db: AsyncClient = Depends(get_db)):\n    return await service.list_all(db)\n",
             f"tests/test_{snake}.py": f"import pytest\nfrom httpx import AsyncClient\n\n\n@pytest.mark.asyncio\nasync def test_list_{snake}s(client: AsyncClient):\n    response = await client.get(\"/{snake}s/\")\n    assert response.status_code == 200\n",
         }
@@ -193,7 +193,7 @@ def _feature_files(stack: str, name: str) -> dict[str, str]:
             "repository.go": f"package {pkg}\n\ntype Repository struct{{}}\n",
             "service.go": f"package {pkg}\n\ntype Service struct {{\n\trepo *Repository\n}}\n\nfunc NewService(r *Repository) *Service {{ return &Service{{repo: r}} }}\n",
             "handler.go": f"package {pkg}\n\nimport \"net/http\"\n\ntype Handler struct {{ svc *Service }}\n\nfunc NewHandler(s *Service) *Handler {{ return &Handler{{svc: s}} }}\n\nfunc (h *Handler) List(w http.ResponseWriter, r *http.Request) {{}}\n",
-            f"handler_test.go": f"package {pkg}_test\n\nimport \"testing\"\n\nfunc TestList(t *testing.T) {{ t.Skip(\"implement\") }}\n",
+            "handler_test.go": f"package {pkg}_test\n\nimport \"testing\"\n\nfunc TestList(t *testing.T) {{ t.Skip(\"implement\") }}\n",
         }
     return {"README.md": f"# {name}\n\nFeature criada pelo Argus. Stack não reconhecida: {stack}\n"}
 
