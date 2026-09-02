@@ -1,0 +1,23 @@
+Readme.md
+  s_5119306f9b16e4::t_e4ebb114e2862a 8
+docs/guide.md
+  s_5119306f9b16e4::t_a9e50aea3e9750 7,38,223
+packages/cli/package.json
+  s_5119306f9b16e4::t_503742460a962b 2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "e8dbb43c3efe33c6a26196e5c815fcce2a0a9c02",
+  "prompts": {},
+  "sessions": {
+    "s_5119306f9b16e4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4d7fc480-dd43-417b-b7de-8d54453effed",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Claudio Silwa <claudiosilva.one@gmail.com>"
+    }
+  }
+}
