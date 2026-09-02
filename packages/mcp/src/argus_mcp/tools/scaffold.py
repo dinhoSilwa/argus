@@ -3,6 +3,7 @@ from __future__ import annotations
 import re
 from datetime import date
 from pathlib import Path
+from typing import Any
 
 import mcp.types as types
 
@@ -12,7 +13,7 @@ TOOLS: list[types.Tool] = [
     types.Tool(
         name="create_spec",
         description="Cria um novo arquivo de spec no vault a partir do template.",
-        inputSchema={
+        input_schema={
             "type": "object",
             "properties": {
                 "id": {"type": "string"},
@@ -24,7 +25,7 @@ TOOLS: list[types.Tool] = [
     types.Tool(
         name="create_feature",
         description="Cria estrutura VSA de uma nova feature no projeto.",
-        inputSchema={
+        input_schema={
             "type": "object",
             "properties": {
                 "name": {"type": "string", "description": "Nome em kebab-case"},
@@ -35,7 +36,7 @@ TOOLS: list[types.Tool] = [
     types.Tool(
         name="create_endpoint",
         description="Cria arquivos de endpoint dentro de uma feature existente.",
-        inputSchema={
+        input_schema={
             "type": "object",
             "properties": {
                 "feature": {"type": "string"},
@@ -51,7 +52,7 @@ TOOLS: list[types.Tool] = [
     types.Tool(
         name="create_migration",
         description="Cria arquivo de migração numerado sequencialmente.",
-        inputSchema={
+        input_schema={
             "type": "object",
             "properties": {
                 "description": {"type": "string", "description": "Em snake_case"},
@@ -242,7 +243,7 @@ updated_at: {{DATE}}
 """
 
 
-HANDLERS: dict[str, object] = {
+HANDLERS: dict[str, Any] = {
     "create_spec": _create_spec,
     "create_feature": _create_feature,
     "create_endpoint": _create_endpoint,

@@ -22,19 +22,19 @@ _tools: list[types.Tool] = [
 Handler = Callable[[dict[str, Any]], Coroutine[Any, Any, str]]
 
 _handlers: dict[str, Handler] = {
-    **context.HANDLERS,  # type: ignore[arg-type]
-    **memory.HANDLERS,  # type: ignore[arg-type]
-    **scaffold.HANDLERS,  # type: ignore[arg-type]
-    **validate.HANDLERS,  # type: ignore[arg-type]
+    **context.HANDLERS,
+    **memory.HANDLERS,
+    **scaffold.HANDLERS,
+    **validate.HANDLERS,
 }
 
 
-@server.list_tools()
+@server.list_tools()  # type: ignore[attr-defined, untyped-decorator]
 async def list_tools() -> list[types.Tool]:
     return _tools
 
 
-@server.call_tool()
+@server.call_tool()  # type: ignore[attr-defined, untyped-decorator]
 async def call_tool(name: str, arguments: dict[str, Any]) -> list[types.TextContent]:
     handler = _handlers.get(name)
     if handler is None:

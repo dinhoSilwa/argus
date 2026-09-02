@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import re
 from pathlib import Path
+from typing import Any
 
 import mcp.types as types
 
@@ -11,12 +12,12 @@ TOOLS: list[types.Tool] = [
     types.Tool(
         name="read_project_context",
         description="Retorna contexto consolidado do projeto (stack, backlog em andamento, últimas decisões, instruções do agente).",
-        inputSchema={"type": "object", "properties": {}},
+        input_schema={"type": "object", "properties": {}},
     ),
     types.Tool(
         name="read_spec",
         description="Lê um arquivo de spec do vault por ID ou path.",
-        inputSchema={
+        input_schema={
             "type": "object",
             "properties": {
                 "id": {"type": "string", "description": "ID do item (ex: ARGUS-015)"},
@@ -70,6 +71,7 @@ async def _read_spec(args: dict[str, object]) -> str:
     except RuntimeError as e:
         return f"[ERRO] {e}"
 
+    target: Path | None
     if spec_path:
         target = cfg.vault_path / str(spec_path)
     else:
@@ -116,7 +118,7 @@ def _find_by_id(vault: Path, spec_id: str) -> Path | None:
     return None
 
 
-HANDLERS: dict[str, object] = {
+HANDLERS: dict[str, Any] = {
     "read_project_context": _read_project_context,
     "read_spec": _read_spec,
 }

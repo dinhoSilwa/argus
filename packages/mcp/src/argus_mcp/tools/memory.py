@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import re
 from datetime import date
+from typing import Any
 
 import mcp.types as types
 
@@ -11,7 +12,7 @@ TOOLS: list[types.Tool] = [
     types.Tool(
         name="save_decision",
         description="Acrescenta uma entrada formatada no decision-log.md do vault.",
-        inputSchema={
+        input_schema={
             "type": "object",
             "properties": {
                 "title": {"type": "string"},
@@ -26,7 +27,7 @@ TOOLS: list[types.Tool] = [
     types.Tool(
         name="update_backlog",
         description="Move um item do backlog (start | complete | block).",
-        inputSchema={
+        input_schema={
             "type": "object",
             "properties": {
                 "id": {"type": "string"},
@@ -158,7 +159,7 @@ def _extract_item_text(row: str) -> str:
     return parts[1] if len(parts) > 1 else row
 
 
-HANDLERS: dict[str, object] = {
+HANDLERS: dict[str, Any] = {
     "save_decision": _save_decision,
     "update_backlog": _update_backlog,
 }

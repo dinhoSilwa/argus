@@ -3,6 +3,7 @@ from __future__ import annotations
 import asyncio
 import re
 from pathlib import Path
+from typing import Any
 
 import mcp.types as types
 
@@ -12,12 +13,12 @@ TOOLS: list[types.Tool] = [
     types.Tool(
         name="validate_architecture",
         description="Verifica VSA: sem imports cruzados entre features.",
-        inputSchema={"type": "object", "properties": {}},
+        input_schema={"type": "object", "properties": {}},
     ),
     types.Tool(
         name="check_quality",
         description="Executa lint, typecheck e testes.",
-        inputSchema={
+        input_schema={
             "type": "object",
             "properties": {
                 "fix": {"type": "boolean", "description": "Corrige automaticamente"},
@@ -27,7 +28,7 @@ TOOLS: list[types.Tool] = [
     types.Tool(
         name="review_endpoint",
         description="Verifica checklist de endpoint completo.",
-        inputSchema={
+        input_schema={
             "type": "object",
             "properties": {
                 "feature": {"type": "string"},
@@ -229,7 +230,7 @@ def _build_checklist(feature_dir: Path, stack: str) -> list[tuple[str, bool, str
     return [("estrutura de feature", feature_dir.exists(), "")]
 
 
-HANDLERS: dict[str, object] = {
+HANDLERS: dict[str, Any] = {
     "validate_architecture": _validate_architecture,
     "check_quality": _check_quality,
     "review_endpoint": _review_endpoint,
