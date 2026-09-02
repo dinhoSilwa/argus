@@ -1,0 +1,25 @@
+.github/workflows/ci.yml
+  s_5119306f9b16e4::t_7b2233598153ba 48
+packages/mcp/pyproject.toml
+  s_5119306f9b16e4::t_5880e1015eb13b 24-25
+.github/workflows/publish.yml
+  s_5119306f9b16e4::t_4c0edf8d2d864b 62
+packages/mcp/uv.lock
+  s_5119306f9b16e4::t_c706405c4f2c95 5-6,42,45,53,56-120,378-478,517-579,601-609,908-932
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "698da3d396233c28f4f2652d978097662ae97a4a",
+  "prompts": {},
+  "sessions": {
+    "s_5119306f9b16e4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4d7fc480-dd43-417b-b7de-8d54453effed",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Claudio Silwa <claudiosilva.one@gmail.com>"
+    }
+  }
+}
