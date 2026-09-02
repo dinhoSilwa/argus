@@ -5,7 +5,7 @@
 **[→ Guia completo: como funciona e como usar](docs/guide.md)**
 
 ```bash
-npx argus init
+npx create-argus
 ```
 
 ## O que é

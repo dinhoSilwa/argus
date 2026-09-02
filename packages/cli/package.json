@@ -1,5 +1,5 @@
 {
-  "name": "argus-cli",
+  "name": "create-argus",
   "version": "0.1.0",
   "description": "Argus CLI — instala um sistema de engenharia completo em qualquer projeto",
   "type": "module",

@@ -4,7 +4,7 @@
 
 Argus é um sistema instalável que transforma qualquer projeto em um ambiente de engenharia completo em dois minutos. Ele não gera código avulso — ele configura a estrutura, a documentação e as ferramentas que fazem o agente de IA trabalhar com qualidade e rastreabilidade do início ao fim.
 
-Quando você roda `npx argus init`, três coisas acontecem:
+Quando você roda `npx create-argus`, três coisas acontecem:
 
 1. **Seu projeto recebe uma estrutura** — vault de documentação, arquitetura VSA, skills de qualidade
 2. **O agente de IA aprende as regras do projeto** — via instruções instaladas e MCP server
@@ -35,7 +35,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 cd meu-projeto
 
 # Rode o Argus
-npx argus init
+npx create-argus
 ```
 
 O wizard faz quatro perguntas:
@@ -220,7 +220,7 @@ Checklist completo antes de considerar um endpoint/componente/handler como pront
 
 ## Comandos do CLI
 
-### `npx argus init`
+### `npx create-argus`
 Configura um projeto do zero. Roda uma vez.
 
 ### `npx argus add skill <nome>`
