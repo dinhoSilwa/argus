@@ -1,0 +1,28 @@
+packages/cli/src/fetcher.ts
+  s_5119306f9b16e4::t_c45af4fdfc765e 59
+  s_5119306f9b16e4::t_6d11c921496879 8
+packages/cli/package.json
+  s_5119306f9b16e4::t_07ba19f2417a5e 7
+  s_5119306f9b16e4::t_521a1dd4cd3e4e 3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "b7df2b78a1d8663b261348c8158fd712b31f80d4",
+  "prompts": {},
+  "humans": {
+    "h_8e5d3e2ce230b9": {
+      "author": "Claudio Silwa <claudiosilva.one@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_5119306f9b16e4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4d7fc480-dd43-417b-b7de-8d54453effed",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Claudio Silwa <claudiosilva.one@gmail.com>"
+    }
+  }
+}
