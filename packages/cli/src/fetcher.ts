@@ -5,7 +5,7 @@ import { join } from "node:path";
 import { pipeline } from "node:stream/promises";
 import * as tar from "tar";
 
-const REPO = "argus-dev/argus-templates";
+const REPO = "dinhoSilwa/argus-templates";
 const CACHE_DIR = join(homedir(), ".argus", "cache");
 
 export async function fetchStack(
@@ -56,7 +56,7 @@ async function ensureCache(ref: string): Promise<string> {
 }
 
 async function downloadAndExtract(ref: string, destDir: string): Promise<void> {
-  const url = `https://github.com/${REPO}/archive/refs/tags/${ref}.tar.gz`;
+  const url = `https://github.com/${REPO}/archive/${ref}.tar.gz`;
   const tmp = await mkdtemp(join(tmpdir(), "argus-"));
   const tarball = join(tmp, "templates.tar.gz");
 
